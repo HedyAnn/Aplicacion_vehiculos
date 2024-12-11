@@ -7,11 +7,11 @@ marcas = (('Fiat', 'Fiat'), ('Chevrolet', 'Chevrolet'), ('Ford', 'Ford'), ('Toyo
 categoria = (('particular', 'Particular'), ('carga', 'Carga'), ('transporte', 'Transporte'), ('carga', 'Carga'))
 
 class Vehiculo(models.Model):
-    marca = models.CharField(max_length=20,choices=marcas)
+    marca = models.CharField(max_length=20,choices=marcas,default='Ford')
     modelo = models.CharField(max_length=100, verbose_name='Modelo')
     serialCarroceria = models.CharField(max_length=50)
     serialMotor = models.CharField(max_length=50, verbose_name='Serial Motor')
-    categoria = models.CharField(max_length=20, choices=categoria)
+    categoria = models.CharField(max_length=20, choices=categoria, default='particular')
     precio = models.IntegerField()
     fechaCreacion = models.DateField(auto_now_add=True)
     fechaModificacion = models.DateField(auto_now=True)
