@@ -3,6 +3,7 @@ from . form import VehiculoForm
 from . models import Vehiculo
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -16,4 +17,11 @@ class VehiculoCreateView(CreateView):
     form_class = VehiculoForm
     template_name = 'add.html'
     success_url = reverse_lazy('index.html')
-    
+
+def home(request):
+    return render(request, 'vehiculo/home.html')
+
+@login_required
+def listar_vehiculos(request):
+    vehiculos = Vehiculo.objects.all()
+    return render(request, 'listar.html', {'vehiculos': vehiculos})

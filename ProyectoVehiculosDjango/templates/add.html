@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>add</title>
-</head>
-<body>
-    <h1>Formulario para Añadir vehículos</h1>
-    <form method="POST">
-        {{ form.as_p}}
-        {% csrf_token %}
-        <button type="submit">Guardar</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Agregar Vehículo{% endblock %}
+
+{% block content %}
+<h1>Formulario para Añadir Vehículos</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}

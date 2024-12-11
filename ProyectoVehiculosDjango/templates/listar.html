@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Listar{% endblock %}
+
+{% block content %}
+<h1>Lista de Vehículos</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Serial Carroceria</th>
+            <th>Serial Motor</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vehiculo in vehiculos %}
+        <tr>
+            <td>{{ vehiculo.marca }}</td>
+            <td>{{ vehiculo.modelo }}</td>
+            <td>{{ vehiculo.serialCarroceria }}</td>
+            <td>{{ vehiculo.serialMotor }}</td>
+            <td>{{ vehiculo.categoria }}</td>
+            <td>{{ vehiculo.precio }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

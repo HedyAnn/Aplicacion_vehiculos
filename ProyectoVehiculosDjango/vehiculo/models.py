@@ -9,7 +9,7 @@ categoria = (('particular', 'Particular'), ('carga', 'Carga'), ('transporte', 'T
 class Vehiculo(models.Model):
     marca = models.CharField(max_length=20,choices=marcas,default='Ford')
     modelo = models.CharField(max_length=100, verbose_name='Modelo')
-    serialCarroceria = models.CharField(max_length=50)
+    serialCarroceria = models.CharField(max_length=50, verbose_name='Serial Carroceria')
     serialMotor = models.CharField(max_length=50, verbose_name='Serial Motor')
     categoria = models.CharField(max_length=20, choices=categoria, default='particular')
     precio = models.IntegerField()
