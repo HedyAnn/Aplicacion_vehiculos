@@ -18,8 +18,8 @@ class VehiculoCreateView(CreateView):
     template_name = 'add.html'
     success_url = reverse_lazy('index.html')
 
-def home(request):
-    return render(request, 'vehiculo/home.html')
+def index(request):  # Antes: home
+    return render(request, 'index.html')
 
 @login_required
 def listar_vehiculos(request):

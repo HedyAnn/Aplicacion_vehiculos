@@ -1,30 +1,32 @@
+# users/views.py
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login
+from . forms import CustomUserCreationForm
+
+# Vista para el login
+class CustomLoginView(LoginView):
+    template_name = "auth/login.html"
+    redirect_authenticated_user = True
+    
+# Vista para el logout
+class CustomLogoutView(LogoutView):
+    template_name = "auth/logout.html"
+    next_page = '/'
+
+# Vista para el registrofrom django.shortcuts import render, redirect
+from django.contrib.auth import login
+from .forms import CustomUserCreationForm
 
 def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+    if request.user.is_authenticated:
+        return redirect('index')
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')  # Redirige a la página de inicio
+            user = form.save() 
+            login(request, user)  
+            return redirect('index') 
     else:
-        form = UserCreationForm()
-    return render(request, 'users/register.html', {'form': form})
-
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')  # Redirige a la página de inicio
-    else:
-        form = AuthenticationForm()
-    return render(request, 'users/login.html', {'form': form})
-
-def logout_view(request):
-    logout(request)
-    return redirect('login')  # Redirige al formulario de inicio de sesión
-
+        form = CustomUserCreationForm()
+    return render(request, "auth/register.html", {"form": form})

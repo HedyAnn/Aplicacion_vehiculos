@@ -16,18 +16,21 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         {% if user.is_authenticated %}
-          <li class="nav-item">
-            <span class="navbar-text">Bienvenido, {{ user.username }}</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
-          </li>
+            <li class="nav-item">
+                <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link" style="background: none; border: none; color: inherit;">Cerrar Sesión</button>
+                </form>
+            </li>
         {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+            </li>
         {% endif %}
-      </ul>
+      </ul>       
     </div>
   </div>
 </nav>
