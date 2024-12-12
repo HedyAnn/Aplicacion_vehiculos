@@ -25,3 +25,23 @@ def index(request):  # Antes: home
 def listar_vehiculos(request):
     vehiculos = Vehiculo.objects.all()
     return render(request, 'listar.html', {'vehiculos': vehiculos})
+
+@login_required
+def listar_vehiculos(request):
+    vehiculos = Vehiculo.objects.all()
+    vehiculos_con_condicion = []
+    for vehiculo in vehiculos:
+        if vehiculo.precio < 10000:
+            condicion_precio = 'Bajo'
+        elif 10000 <= vehiculo.precio <= 30000:
+            condicion_precio = 'Medio'
+        else:
+            condicion_precio = 'Alto'
+
+        vehiculos_con_condicion.append({
+            'vehiculo': vehiculo,
+            'condicion_precio': condicion_precio
+        })
+    
+    context = {'vehiculos_con_condicion': vehiculos_con_condicion}
+    return render(request, 'listar.html', context)

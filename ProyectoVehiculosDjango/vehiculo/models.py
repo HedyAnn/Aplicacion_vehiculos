@@ -18,4 +18,12 @@ class Vehiculo(models.Model):
 
     def __str__(self):
         return f'{self.marca} {self.modelo} {self.serialCarroceria}'
-    
+
+    @property
+    def condicion_precio(self):
+        if self.precio <= 10000:
+            return 'Bajo'
+        elif self.precio <= 30000:
+            return 'Medio'
+        else:
+            return 'Alto'

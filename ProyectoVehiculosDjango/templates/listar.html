@@ -13,17 +13,19 @@
             <th>Serial Motor</th>
             <th>Categoría</th>
             <th>Precio</th>
+            <th>Condiciones de Precio</th>  <!-- Nueva columna -->
         </tr>
     </thead>
     <tbody>
-        {% for vehiculo in vehiculos %}
+        {% for item in vehiculos_con_condicion %}
         <tr>
-            <td>{{ vehiculo.marca }}</td>
-            <td>{{ vehiculo.modelo }}</td>
-            <td>{{ vehiculo.serialCarroceria }}</td>
-            <td>{{ vehiculo.serialMotor }}</td>
-            <td>{{ vehiculo.categoria }}</td>
-            <td>{{ vehiculo.precio }}</td>
+            <td>{{ item.vehiculo.marca }}</td>
+            <td>{{ item.vehiculo.modelo }}</td>
+            <td>{{ item.vehiculo.serialCarroceria }}</td>
+            <td>{{ item.vehiculo.serialMotor }}</td>
+            <td>{{ item.vehiculo.categoria }}</td>
+            <td>{{ item.vehiculo.precio }}</td>
+            <td>{{ item.condicion_precio }}</td>  <!-- Mostrar la condición de precio -->
         </tr>
         {% endfor %}
     </tbody>
