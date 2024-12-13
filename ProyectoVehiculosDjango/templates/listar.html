@@ -3,31 +3,35 @@
 {% block title %}Listar{% endblock %}
 
 {% block content %}
-<h1>Lista de Vehículos</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Serial Carroceria</th>
-            <th>Serial Motor</th>
-            <th>Categoría</th>
-            <th>Precio</th>
-            <th>Condiciones de Precio</th>  <!-- Nueva columna -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in vehiculos_con_condicion %}
-        <tr>
-            <td>{{ item.vehiculo.marca }}</td>
-            <td>{{ item.vehiculo.modelo }}</td>
-            <td>{{ item.vehiculo.serialCarroceria }}</td>
-            <td>{{ item.vehiculo.serialMotor }}</td>
-            <td>{{ item.vehiculo.categoria }}</td>
-            <td>{{ item.vehiculo.precio }}</td>
-            <td>{{ item.condicion_precio }}</td>  <!-- Mostrar la condición de precio -->
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="container my-4">
+    <h1 class="text-center text-info mb-4">Lista de Vehículos</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serial Carroceria</th>
+                    <th>Serial Motor</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Condiciones de Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in vehiculos_con_condicion %}
+                <tr>
+                    <td>{{ item.vehiculo.marca }}</td>
+                    <td>{{ item.vehiculo.modelo }}</td>
+                    <td>{{ item.vehiculo.serialCarroceria }}</td>
+                    <td>{{ item.vehiculo.serialMotor }}</td>
+                    <td>{{ item.vehiculo.categoria }}</td>
+                    <td>{{ item.vehiculo.precio }}</td>
+                    <td>{{ item.condicion_precio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

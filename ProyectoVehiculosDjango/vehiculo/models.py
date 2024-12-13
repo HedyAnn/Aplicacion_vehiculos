@@ -16,6 +16,11 @@ class Vehiculo(models.Model):
     fechaCreacion = models.DateField(auto_now_add=True)
     fechaModificacion = models.DateField(auto_now=True)
 
+    class Meta:
+        permissions = [
+            ("add_vehiculomodel", "Puede agregar vehiculos"),
+        ]
+
     def __str__(self):
         return f'{self.marca} {self.modelo} {self.serialCarroceria}'
 
